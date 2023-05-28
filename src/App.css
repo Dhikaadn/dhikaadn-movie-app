@@ -486,6 +486,18 @@
     text-align: center;
 }
 
+.profil-container{
+    display:flex;
+    color: white;
+    margin-top: 10px;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 100px;
+}
+
 /* Responsive of website */
 @media only screen and (max-width: 1018px) {
     .navbar-top{

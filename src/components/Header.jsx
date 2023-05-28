@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfile, logout } from "../redux/actions/auth";
 import { AiOutlineSearch } from "react-icons/ai";
+import { CgProfile} from "react-icons/cg";
 import "../App.css";
 
 
@@ -75,7 +76,10 @@ function Header() {
             
 
                 <div className="btn-container">
-                  <h2 className="me-2 mt-2">Dashboard ({user?.name})</h2>
+                  <div className="profil-container">
+                    <CgProfile className="mt-3 me-2" style={{ fontSize: "30px" }}/>
+                    <h2 className="me-4 mt-2">{user?.name}</h2>
+                  </div>
                   <button className="bt-login" onClick={() => dispatch(logout(navigate))}>
                     Logout
                   </button>
