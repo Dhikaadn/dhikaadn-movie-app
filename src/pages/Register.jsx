@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { googleLogin } from "../redux/actions/auth";
+import {useGoogleLogin} from "@react-oauth/google";
 import { register } from "../redux/actions/auth";
 import { toast } from "react-toastify";
 import google_img from "../img/google.png";
@@ -21,9 +23,17 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
 
-  const google = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
-  };
+  // const google = () => {
+  //   window.open("http://localhost:5000/auth/google", "_self");
+  // };
+  const loginGoogle = useGoogleLogin({
+    onSuccess:(tokenResponse)=>{
+       const data = {
+        access_token: tokenResponse.access_token,
+       };
+       dispatch(googleLogin(data,navigate));
+    },
+});
   //Register with github
   const github = () => {
     window.open("http://localhost:5000/auth/github", "_self");
@@ -111,7 +121,7 @@ function Register() {
         </div>
         <div className="cart-social">
           {/* Button of google */}
-          <div onClick={google}>
+          <div onClick={loginGoogle}>
             <img src={google_img} />
           </div>
           {/* Button of facebook */}

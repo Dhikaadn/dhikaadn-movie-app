@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import {useGoogleLogin} from "@react-oauth/google";
+
 import { useNavigate } from "react-router-dom";
 import { login } from "../redux/actions/auth";
 import google_img from "../img/google.png";
@@ -10,7 +12,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import "../App.css"
-
+import { googleLogin } from "../redux/actions/auth";
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,9 +21,15 @@ function Login() {
   const [password, setPassword] = useState("");
 
   //Login with google
-  const google = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
-  };
+  
+  const loginGoogle = useGoogleLogin({
+    onSuccess:(tokenResponse)=>{
+       const data = {
+        access_token: tokenResponse.access_token,
+       };
+       dispatch(googleLogin(data,navigate));
+    },
+});
   //Login with github
   const github = () => {
     window.open("http://localhost:5000/auth/github", "_self");
@@ -78,9 +86,10 @@ function Login() {
         </div>
         <div className="cart-social">
           {/* Button of google */}
-          <div onClick={google}>
+          <div onClick={loginGoogle}>
             <img src={google_img} />
           </div>
+          {/* buttonText={"Login with google"} */}
           {/* Button of facebook */}
           <div onClick={facebook}>
             <img src={facebook_img} />
