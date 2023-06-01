@@ -482,10 +482,12 @@
     text-align: left;
 }
 
+/* Style of word "or" in login and register page */
 .or{
     text-align: center;
 }
 
+/* Style of container profile */
 .profil-container{
     display:flex;
     color: white;

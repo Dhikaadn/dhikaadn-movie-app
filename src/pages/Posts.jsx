@@ -1,5 +1,5 @@
+//Import library and others
 import React, { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../redux/actions/post";
@@ -10,7 +10,6 @@ import { TheFooter } from "../components/TheFooter";
 import slide1 from "../img/slide1.jpg";
 import slide2 from "../img/slide2.jpg";
 import slide3 from "../img/slide3.jpg";
-
 
 function Posts() {
   // dispatch -> to change the global state in redux
@@ -24,8 +23,6 @@ function Posts() {
     dispatch(getPosts());
   }, [dispatch]);
   console.log(posts)
-
-  
 
   return (
     <div>
@@ -172,7 +169,7 @@ function Posts() {
           ))}
     </div>
     <TheFooter/>
-    </div>
+  </div>
     
    
   );

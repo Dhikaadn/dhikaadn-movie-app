@@ -1,8 +1,7 @@
+//Import library and others
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import {useGoogleLogin} from "@react-oauth/google";
-
 import { useNavigate } from "react-router-dom";
 import { login } from "../redux/actions/auth";
 import google_img from "../img/google.png";
@@ -10,18 +9,16 @@ import facebook_img from "../img/facebook.png";
 import github_img from "../img/github.png";
 import { AiOutlineMail } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
 import "../App.css"
 import { googleLogin } from "../redux/actions/auth";
+
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   //Login with google
-  
   const loginGoogle = useGoogleLogin({
     onSuccess:(tokenResponse)=>{
        const data = {
@@ -29,7 +26,7 @@ function Login() {
        };
        dispatch(googleLogin(data,navigate));
     },
-});
+  });
   //Login with github
   const github = () => {
     window.open("http://localhost:5000/auth/github", "_self");
@@ -41,9 +38,7 @@ function Login() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     const data = { email, password };
-
     dispatch(login(data, navigate));
   };
 
@@ -77,7 +72,6 @@ function Login() {
             />
             <AiFillEyeInvisible className="me-2" style={{ fontSize: "25px" }} />
           </div>
-          {/* {error && <div>{error}</div>} */}
           <button className="bt-login-submit">Login</button>
         </form>
         <div className="or">
@@ -89,7 +83,6 @@ function Login() {
           <div onClick={loginGoogle}>
             <img src={google_img} />
           </div>
-          {/* buttonText={"Login with google"} */}
           {/* Button of facebook */}
           <div onClick={facebook}>
             <img src={facebook_img} />

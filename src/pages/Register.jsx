@@ -1,5 +1,5 @@
+//Import library and others
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { googleLogin } from "../redux/actions/auth";
@@ -17,15 +17,12 @@ import "../App.css"
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
 
-  // const google = () => {
-  //   window.open("http://localhost:5000/auth/google", "_self");
-  // };
+  //Register with google
   const loginGoogle = useGoogleLogin({
     onSuccess:(tokenResponse)=>{
        const data = {
@@ -112,7 +109,6 @@ function Register() {
             />
             <AiFillEyeInvisible className="me-2" style={{ fontSize: "25px" }} />
           </div>
-          {/* {error && <div>{error}</div>} */}
           <button className="bt-register-submit">Register now</button>
         </form>
         <div className="or">

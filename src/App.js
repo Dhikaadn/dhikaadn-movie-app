@@ -16,17 +16,14 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-
         <Route path="/" element={<Posts />} />
         <Route
           path="/posts/:id"
           element={isLoggedIn ? <PostDetails /> : <Navigate to="/login" />}
         />
-
         <Route
           path="/user/dashboard"
           element={
@@ -36,7 +33,6 @@ function App() {
           }
         />
       </Routes>
-
       <ToastContainer theme="colored" />
     </BrowserRouter>
   );
